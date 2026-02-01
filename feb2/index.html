@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soweto Ward Monthly Newsletter</title>
+    <link rel="stylesheet" href="newsletter.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Print-specific enhancements */
+        @media print {
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #1e4d8c;
+                color: #333;
+            }
+            
+            .print-header .logo {
+                font-size: 24px;
+                color: #1e4d8c;
+                margin-bottom: 5px;
+            }
+            
+            .print-header .date {
+                font-weight: bold;
+                color: #c8102e;
+            }
+            
+            /* Improve print readability */
+            body {
+                font-size: 12pt !important;
+                line-height: 1.5 !important;
+            }
+            
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            .announcements-grid,
+            .auxiliary-grid,
+            .reminders-grid {
+                display: block !important;
+            }
+            
+            .announcement-card,
+            .auxiliary-card,
+            .reminder-card {
+                margin-bottom: 15px;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Screen-only enhancements */
+        @media screen {
+            .print-header {
+                display: none;
+            }
+            
+            /* Subtle animations */
+            .section-title {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+                transition: width 0.3s ease;
+            }
+            
+            .section:hover .section-title::after {
+                width: 100%;
+            }
+            
+            /* Gradient backgrounds for important sections */
+            .message-box, .cfm-box {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e8f4ff 100%);
+            }
+            
+            /* Hover effects for cards */
+            .announcement-card, .auxiliary-card, .reminder-card {
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+            
+            .announcement-card:hover, .auxiliary-card:hover, .reminder-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Print-only header -->
+    <div class="print-header">
+        <div class="logo">
+            <i class="fas fa-church"></i> Soweto Ward Monthly Newsletter
+        </div>
+        <div class="date" id="print-current-date">February 2026</div>
+    </div>
+    
+    <div class="newsletter-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo-container">
+                <i class="fas fa-church church-logo"></i>
+                <div>
+                    <h1 class="ward-name">Soweto Ward</h1>
+                    <div class="stake-name">Soweto Stake</div>
+                </div>
+            </div>
+            
+            <div class="theme">
+                <i class="fas fa-quote-left"></i>
+                <span id="monthly-theme">For where two or three are gathered together in my name, there am I in the midst of them.</span> - Matthew 18:20
+            </div>
+            
+            <div class="date-volume">
+                <div><strong>Month:</strong> <span id="current-month">February 2026</span></div>
+                <div><strong>Volume:</strong> <span id="current-volume">Volume 1, Issue 2</span></div>
+            </div>
+            
+            <div class="bishopric-section">
+                <div class="bishopric-card">
+                    <div class="bishopric-title">Bishop</div>
+                    <div class="bishopric-name">Thomas Moeti Mahlo</div>
+                </div>
+                <div class="bishopric-card">
+                    <div class="bishopric-title">1st Counselor</div>
+                    <div class="bishopric-name">Alfred Shimani Tlokotsi</div>
+                </div>
+                <div class="bishopric-card">
+                    <div class="bishopric-title">2nd Counselor</div>
+                    <div class="bishopric-name">Manhla Maisela Madise</div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Bishopric Message -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-bullhorn"></i> A Message from the Bishopric</h2>
+                <div class="zulu-text">Umlayezo ovela kubabhishophi</div>
+                
+                <div class="message-box">
+                    <div class="message-author">
+                        <i class="fas fa-user-circle"></i> From Bishop Thomas Moeti Mahlo:
+                    </div>
+                    <p id="bishopric-message">"Dear Brothers and Sisters of Soweto Ward, <em>Sanibonani</em>. As we begin this new month, let us focus on strengthening our personal relationships with the Savior. February is a month of love, and what better way to show love than by following Christ's example in our daily interactions? Let us make time for meaningful prayer, scripture study, and service. My counselors and I pray for each of you and your families. <em>Ngiyanithanda nonke.</em>"</p>
+                </div>
+            </section>
+
+            <!-- Sunday Services Reminder -->
+            <section class="section">
+                <div class="message-box" style="background-color: #e8f4ff;">
+                    <div class="message-author">
+                        <i class="fas fa-calendar-check"></i> Sunday Services Reminder:
+                    </div>
+                    <p><strong>Please note our Sunday service schedule:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Every Sunday:</strong> Sacrament Meeting at 9:00 AM - 10:10 AM</li>
+                        <li><strong>1st & 3rd Sundays:</strong> Sunday School (Old Testament) at 10:15 AM - 11:00 AM</li>
+                        <li><strong>2nd & 4th Sundays:</strong> Relief Society and Elders Quorum classes at 10:15 AM - 11:00 AM</li>
+                        <li><strong>5th Sundays:</strong> Combined 2nd hour meeting at 10:15 AM - 11:00 AM</li>
+                        <li><strong>February 15th:</strong> NO regular Sacrament Meeting. Attend Stake Conference at 10:00 AM (Pimville Chapel)</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-style: italic;"><strong>2026 Study Focus:</strong> Old Testament</p>
+                </div>
+            </section>
+            
+            <!-- Come Follow Me Section -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-book-bible"></i> This Month's "Come, Follow Me" Focus</h2>
+                
+                <div class="old-testament-banner">
+                    <h4><i class="fas fa-scroll"></i> 2026 Study Focus: Old Testament</h4>
+                    <p>"All things which have been given of God from the beginning of the world... are the typifying of Christ" (2 Nephi 11:4)</p>
+                </div>
+                
+                <div class="cfm-box">
+                    <div class="cfm-header">
+                        <div class="cfm-theme" id="cfm-month-theme">"The Foundations of Faith"</div>
+                        <div class="cfm-resource" id="cfm-month-resource">February: Genesis 5-9; Moses 6-7</div>
+                    </div>
+                    
+                    <div class="cfm-point">
+                        <strong>Weekly Breakdown (Old Testament 2026):</strong>
+                        <ul class="cfm-weekly">
+                            <li><strong>Week 1 (Feb 1-7):</strong> Genesis 5; Moses 6 - The Generations of Adam and the Preaching of Enoch</li>
+                            <li><strong>Week 2 (Feb 8-14):</strong> Moses 7 - Enoch's Vision and the City of Zion</li>
+                            <li><strong>Week 3 (Feb 15-21):</strong> Genesis 6-7; Moses 8 - Noah and the Flood</li>
+                            <li><strong>Week 4 (Feb 22-28):</strong> Genesis 8-9; Moses 7:62-69 - The Covenant of the Rainbow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cfm-point">
+                        <strong>Monthly Invitation:</strong> Read about Enoch's faith in Moses 6-7 and identify one principle you can apply to build your own "city of Zion" in your home.
+                    </div>
+                    
+                    <div class="cfm-point">
+                        <strong>Family Challenge:</strong> Read the story of Noah (Genesis 6-9) together and discuss what modern "arks" we need to build to protect our families spiritually.
+                    </div>
+                    
+                    <div class="cfm-point">
+                        <strong>Sunday School Connection:</strong> Our Sunday School lessons on 1st & 3rd Sundays will deepen our study of these Old Testament chapters.
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Birthdays -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-birthday-cake"></i> This Month's Birthdays</h2>
+                <div class="zulu-text">Sigmeme ngosuku lokuzalwa! Let's celebrate our members!</div>
+                
+                <div class="birthday-list" id="birthday-container">
+                    <!-- Birthdays will be populated by JavaScript in ascending order -->
+                </div>
+                
+                <p style="margin-top: 15px; font-style: italic;">
+                    <i class="fas fa-heart" style="color: var(--secondary-color);"></i> Sizophumelela usuku lokuzalwa oluhle kakhulu! We hope you have a wonderful celebration.
+                </p>
+            </section>
+            
+            <!-- Important Announcements -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-bullhorn"></i> Important Announcements</h2>
+                <div class="zulu-text">Izaziso ezibalulekile! Important notices!</div>
+                
+                <div class="announcements-grid">
+                    <!-- Mission Call Announcement -->
+                    <div class="announcement-card announcement-mission">
+                        <div class="announcement-icon">
+                            <i class="fas fa-globe-africa"></i>
+                        </div>
+                        <div class="announcement-content">
+                            <div class="announcement-title">Mission Call Received!</div>
+                            <div class="announcement-details">
+                                <strong>Congratulations to Simphiwe Mbhele</strong><br>
+                                who has received his mission call to serve in the<br>
+                                <strong>Kenya Nairobi Mission</strong><br>
+                                We rejoice with him and his family!
+                            </div>
+                            <div class="announcement-date">Departure Date: To be announced</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Budget Submission -->
+                    <div class="announcement-card announcement-urgent">
+                        <div class="announcement-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="announcement-content">
+                            <div class="announcement-title">Annual Budget Submission</div>
+                            <div class="announcement-details">
+                                All auxiliary presidencies must submit their 2026 annual budgets to the Bishopric by:<br>
+                                <strong>15 February 2026</strong><br>
+                                Please ensure timely submission for proper planning.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Temple Trip -->
+                    <div class="announcement-card announcement-temple">
+                        <div class="announcement-icon">
+                            <i class="fas fa-place-of-worship"></i>
+                        </div>
+                        <div class="announcement-content">
+                            <div class="announcement-title">Ward Temple Trip</div>
+                            <div class="announcement-details">
+                                <strong>Save the Date: 9 May 2026</strong><br>
+                                Johannesburg Temple - 11:00 AM Session<br>
+                                <em>Start saving now for temple expenses!</em><br>
+                                We encourage all members to begin setting aside funds for this important trip.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Auxiliary Corner -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-comments"></i> Auxiliary Leaders' Corner</h2>
+                <div class="zulu-text">Izimemezelo ezivela kuzo zonke izinhlangano</div>
+                
+                <div class="auxiliary-grid" id="auxiliary-container">
+                    <!-- Auxiliary content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Member Spotlight -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-star"></i> Member Message & Spotlight</h2>
+                <div class="zulu-text">Sizwakalise umoya womndeni wethu</div>
+                
+                <div class="message-box">
+                    <div class="message-author">
+                        <i class="fas fa-user-edit"></i> <span id="spotlight-author">"Growing Through Service" by Sister Thandi Nkosi</span>
+                    </div>
+                    <p id="spotlight-message">"Serving as the Relief Society president has taught me the true meaning of Christlike love. When we visit the sick, comfort the grieving, or simply listen to someone who needs to talk, we become His hands. This ward has shown me that service isn't just about big projects - it's in the small, daily acts of kindness. I testify that as we serve one another, we grow closer to our Savior and to each other."</p>
+                </div>
+            </section>
+            
+            <!-- Sunday Schedule with Hymns -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-clock"></i> February Sunday Schedule & Hymns</h2>
+                
+                <div class="sunday-schedule">
+                    <!-- Week 1 -->
+                    <div class="sunday-week">
+                        <div class="sunday-date">Sunday, February 1st</div>
+                        <div class="sunday-details">
+                            <div class="sunday-type">1st Sunday - Sunday School</div>
+                            <div class="hymns-section">
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Opening Hymn:</span>
+                                    <span class="hymn-name">#81 - Press Forward, Saints</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Sacrament Hymn:</span>
+                                    <span class="hymn-name">#183 - In Remembrance of Thy Suffering</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Closing Hymn:</span>
+                                    <span class="hymn-name">#85 - How Firm a Foundation</span>
+                                </div>
+                            </div>
+                            <div class="sunday-notes">2nd Hour: Sunday School - Old Testament Study</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Week 2 -->
+                    <div class="sunday-week">
+                        <div class="sunday-date">Sunday, February 8th</div>
+                        <div class="sunday-details">
+                            <div class="sunday-type">2nd Sunday - Auxiliary Classes</div>
+                            <div class="hymns-section">
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Opening Hymn:</span>
+                                    <span class="hymn-name">#2 - The Spirit of God</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Sacrament Hymn:</span>
+                                    <span class="hymn-name">#187 - God Loved Us, So He Sent His Son</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Closing Hymn:</span>
+                                    <span class="hymn-name">#134 - I Believe in Christ</span>
+                                </div>
+                            </div>
+                            <div class="sunday-notes">2nd Hour: Relief Society & Elders Quorum</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Week 3 - Stake Conference -->
+                    <div class="sunday-week special-event">
+                        <div class="sunday-date">Sunday, February 15th</div>
+                        <div class="sunday-details">
+                            <div class="sunday-type">Stake Conference</div>
+                            <div class="hymns-section">
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Location:</span>
+                                    <span class="hymn-name">Pimville Chapel</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Time:</span>
+                                    <span class="hymn-name">10:00 AM</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Note:</span>
+                                    <span class="hymn-name">No regular ward services</span>
+                                </div>
+                            </div>
+                            <div class="sunday-notes">All members encouraged to attend Stake Conference</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Week 4 -->
+                    <div class="sunday-week">
+                        <div class="sunday-date">Sunday, February 22nd</div>
+                        <div class="sunday-details">
+                            <div class="sunday-type">4th Sunday - Auxiliary Classes</div>
+                            <div class="hymns-section">
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Opening Hymn:</span>
+                                    <span class="hymn-name">#86 - How Great Thou Art</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Sacrament Hymn:</span>
+                                    <span class="hymn-name">#185 - Reverently and Meekly Now</span>
+                                </div>
+                                <div class="hymn-item">
+                                    <span class="hymn-label">Closing Hymn:</span>
+                                    <span class="hymn-name">#193 - I Stand All Amazed</span>
+                                </div>
+                            </div>
+                            <div class="sunday-notes">2nd Hour: Relief Society & Elders Quorum</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Reminders -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-exclamation-circle"></i> Important Reminders</h2>
+                
+                <div class="reminders-grid" id="reminders-container">
+                    <!-- Reminders will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <h3>How to Receive This Newsletter</h3>
+            <div class="distribution-info">
+                <div class="distribution-methods">
+                    <div class="method">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp Broadcast</strong>
+                            <p>Sent on the 1st of each month</p>
+                        </div>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-print"></i>
+                        <div>
+                            <strong>Printed Copies</strong>
+                            <p>Available on the chapel notice board</p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="submission-info">
+                    <p><strong>Submission Deadline:</strong> 25th of each month for the following month's newsletter</p>
+                    <p><strong>Send announcements to:</strong> Ward Clerk or Communications Specialist</p>
+                </div>
+            </div>
+            
+            <div class="footer-quote">
+                "Ake sihambe naye, siyamlandela!" - Come, let us walk with Him, let us follow Him!
+            </div>
+            
+            <div class="footer-actions">
+                <button class="action-btn" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Newsletter
+                </button>
+                <button class="action-btn" id="email-btn">
+                    <i class="fas fa-envelope"></i> Email This
+                </button>
+                <button class="action-btn" id="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Share on WhatsApp
+                </button>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="newsletter.js"></script>
+</body>
+</html>
