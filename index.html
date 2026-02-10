@@ -4,11 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soweto Ward Monthly Newsletter</title>
-    <link rel="stylesheet" href="large.css">
+    <link rel="stylesheet" href="newsletter.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Print-specific enhancements */
+        @media print {
+            .print-header {
+                display: block !important;
+                text-align: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #1e4d8c;
+                color: #333;
+            }
+            
+            .print-header .logo {
+                font-size: 24px;
+                color: #1e4d8c;
+                margin-bottom: 5px;
+            }
+            
+            .print-header .date {
+                font-weight: bold;
+                color: #c8102e;
+            }
+            
+            /* Improve print readability */
+            body {
+                font-size: 12pt !important;
+                line-height: 1.5 !important;
+            }
+            
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            .announcements-grid,
+            .auxiliary-grid,
+            .reminders-grid {
+                display: block !important;
+            }
+            
+            .announcement-card,
+            .auxiliary-card,
+            .reminder-card {
+                margin-bottom: 15px;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Screen-only enhancements */
+        @media screen {
+            .print-header {
+                display: none;
+            }
+            
+            /* Subtle animations */
+            .section-title {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+                transition: width 0.3s ease;
+            }
+            
+            .section:hover .section-title::after {
+                width: 100%;
+            }
+            
+            /* Gradient backgrounds for important sections */
+            .message-box, .cfm-box {
+                background: linear-gradient(135deg, #f8f9fa 0%, #e8f4ff 100%);
+            }
+            
+            /* Hover effects for cards */
+            .announcement-card, .auxiliary-card, .reminder-card {
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+            
+            .announcement-card:hover, .auxiliary-card:hover, .reminder-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Print-only header -->
+    <div class="print-header">
+        <div class="logo">
+            <i class="fas fa-church"></i> Soweto Ward Monthly Newsletter
+        </div>
+        <div class="date" id="print-current-date">February 2026</div>
+    </div>
+    
     <div class="newsletter-container">
         <!-- Header Section -->
         <header class="header">
@@ -27,7 +127,7 @@
             
             <div class="date-volume">
                 <div><strong>Month:</strong> <span id="current-month">February 2026</span></div>
-                <div><strong>Volume:</strong> <span id="current-volume">Volume 1, Issue 1</span></div>
+                <div><strong>Volume:</strong> <span id="current-volume">Volume 1, Issue 2</span></div>
             </div>
             
             <div class="bishopric-section">
@@ -205,9 +305,17 @@
                 
                 <div class="message-box">
                     <div class="message-author">
-                        <i class="fas fa-user-edit"></i> <span id="spotlight-author">"Growing Through Service" by Sister Thandi Nkosi</span>
+                        <i class="fas fa-user-edit"></i> <span id="spotlight-author">"Our beloved amily" by Alfred Tlokotsi</span>
                     </div>
-                    <p id="spotlight-message">"Serving as the Relief Society president has taught me the true meaning of Christlike love. When we visit the sick, comfort the grieving, or simply listen to someone who needs to talk, we become His hands. This ward has shown me that service isn't just about big projects - it's in the small, daily acts of kindness. I testify that as we serve one another, we grow closer to our Savior and to each other."</p>
+                    <p id="spotlight-message">"To our beloved ward family,
+
+We want you to know two things today:
+
+1. You are known and loved by your Heavenly Father.
+
+2. You are valued and needed in this ward.
+
+However you are feeling on your path of discipleship—whether you are soaring or struggling—you belong here. We are grateful to be walking this path of covenant keeping with you."</p>
                 </div>
             </section>
             
@@ -339,13 +447,7 @@
                             <p>Available on the chapel notice board</p>
                         </div>
                     </div>
-                    <div class="method">
-                        <i class="fab fa-facebook"></i>
-                        <div>
-                            <strong>Facebook Group</strong>
-                            <p>Private group for ward members</p>
-                        </div>
-                    </div>
+
                 </div>
                 
                 <div class="submission-info">
@@ -372,6 +474,6 @@
         </footer>
     </div>
     
-    <script src="script.js"></script>
+    <script src="newsletter.js"></script>
 </body>
 </html>
