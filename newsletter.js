@@ -108,11 +108,6 @@ const reminders = [
         details: "All auxiliary 2026 budgets due to Bishopric by February 15th."
     },
     {
-        title: "Mission Farewell",
-        icon: "fas fa-globe-africa",
-        details: "Simphiwe Mbhele called to Kenya Nairobi Mission. Farewell details to be announced."
-    },
-    {
         title: "Temple Trip Savings",
         icon: "fas fa-piggy-bank",
         details: "Start saving for May 9th temple trip. Small amounts regularly add up!"
@@ -125,7 +120,7 @@ const reminders = [
     {
         title: "Seminary Schedule",
         icon: "fas fa-graduation-cap",
-        details: "Tuesday: 4:30 PM, Saturday: 12:00 PM. Youth ages 14-18."
+        details: "Tuesday: 4:00 PM, Saturday: 11:00 PM. Youth ages 14-18."
     },
     {
         title: "Sunday Time Reminder",
